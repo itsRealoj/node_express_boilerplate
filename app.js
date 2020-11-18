@@ -11,6 +11,8 @@ const requestLogger = morgan(requestLoggerFormat);
 const jsonParser = express.json();
 const urlEncodedParser = express.urlencoded({ extended: true });
 
+const routes = require('./routes');
+
 const app = express();
 
 const errorLogger = require('./errors/errorLogger');
@@ -29,6 +31,8 @@ app.use(jsonParser);
 app.use(urlEncodedParser);
 
 app.all('/', healthTest);
+
+app.use(routes);
 
 app.use(errorLogger);
 app.use(routeNotFoundErrorHandler);
