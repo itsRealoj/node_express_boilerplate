@@ -13,6 +13,8 @@ const urlEncodedParser = express.urlencoded({ extended: true });
 
 const app = express();
 
+const errorLogger = require('./errors/errorLogger');
+
 //
 const healthTest = (req, res) => {
   res.status(200);
@@ -25,5 +27,7 @@ app.use(jsonParser);
 app.use(urlEncodedParser);
 
 app.all('/', healthTest);
+
+app.use(errorLogger);
 
 module.exports = app;
