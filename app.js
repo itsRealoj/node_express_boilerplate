@@ -14,6 +14,7 @@ const urlEncodedParser = express.urlencoded({ extended: true });
 const app = express();
 
 const errorLogger = require('./errors/errorLogger');
+const routeNotFoundErrorHandler = require('./errors/routeNotFoundErrorHandler');
 const errorHandler = require('./errors/errorHandler');
 
 //
@@ -30,6 +31,7 @@ app.use(urlEncodedParser);
 app.all('/', healthTest);
 
 app.use(errorLogger);
+app.use(routeNotFoundErrorHandler);
 app.use(errorHandler);
 
 module.exports = app;
