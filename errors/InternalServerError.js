@@ -4,7 +4,7 @@
  * Returns internal server error instance.
  */
 
-class InternalServerError extends Error {
+module.exports = class InternalServerError extends Error {
   constructor(...params) {
     super(...params);
 
@@ -16,11 +16,4 @@ class InternalServerError extends Error {
     this.date = new Date();
     this.message = 'Internal server error.';
   }
-}
-
-module.exports = (err, req, res, next) => {
-  const error = new InternalServerError();
-
-  res.status(500);
-  res.json(error);
 };

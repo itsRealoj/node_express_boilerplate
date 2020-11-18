@@ -15,9 +15,11 @@ const routes = require('./routes');
 
 const app = express();
 
-const errorLogger = require('./errors/errorLogger');
-const routeNotFoundErrorHandler = require('./errors/routeNotFoundErrorHandler');
-const errorHandler = require('./errors/errorHandler');
+const {
+  errorLogger,
+  routeNotFoundErrorHandler,
+  internalServerErrorHandler,
+} = require('./utils/errorHandlers');
 
 //
 const healthTest = (req, res) => {
@@ -36,6 +38,6 @@ app.use(routes);
 
 app.use(errorLogger);
 app.use(routeNotFoundErrorHandler);
-app.use(errorHandler);
+app.use(internalServerErrorHandler);
 
 module.exports = app;

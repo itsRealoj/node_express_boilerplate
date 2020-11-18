@@ -4,7 +4,7 @@
  * Returns route not found error instance.
  */
 
-class RouteNotFoundError extends Error {
+module.exports = class RouteNotFoundError extends Error {
   constructor(...params) {
     super(...params);
 
@@ -16,11 +16,4 @@ class RouteNotFoundError extends Error {
     this.date = new Date();
     this.message = 'Route not found.';
   }
-}
-
-module.exports = (req, res, next) => {
-  const error = new RouteNotFoundError();
-
-  res.status(404);
-  res.json(error);
 };
